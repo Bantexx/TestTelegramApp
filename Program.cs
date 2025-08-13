@@ -7,7 +7,11 @@ var builder = WebAssemblyHostBuilder.CreateDefault(args);
 builder.RootComponents.Add<App>("#app");
 builder.RootComponents.Add<HeadOutlet>("head::after");
 
-builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
+var baseAddress = builder.HostEnvironment.BaseAddress;
+if (builder.HostEnvironment.IsDevelopment())
+    baseAddress = "/"; // Для локальной разработкиs
+
+builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(baseAddress) });
 builder.Services.AddScoped<TelegramService>();
 
 await builder.Build().RunAsync();

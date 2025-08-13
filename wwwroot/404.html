@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Redirecting</title>
+    <script>
+        sessionStorage.redirect = location.pathname;
+        location.replace('/');
+    </script>
+</head>
+
+<body>
+<noscript>
+    <h1>Page not found</h1>
+    <p>Redirecting to home page...</p>
+    <a href="/">Click here</a>
+</noscript>
+</body>
+
+</html>

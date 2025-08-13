@@ -8,7 +8,7 @@ public partial class Start : ComponentBase
     private decimal Balance = 1000;
     private int TechLevel = 1;
     private int Clients = 10;
-    private System.Threading.Timer _incomeTimer;
+    private Timer _incomeTimer;
     private bool showIncomeNotification;
     private decimal lastIncome;
     
@@ -31,7 +31,7 @@ public partial class Start : ComponentBase
         Balance += 50 * TechLevel;
     }
 
-    private async void BuyUpgrade(Upgrade upgrade)
+    private void BuyUpgrade(Upgrade upgrade)
     {
         if (Balance >= upgrade.Cost)
         {

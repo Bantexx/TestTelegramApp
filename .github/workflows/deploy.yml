@@ -3,7 +3,7 @@ name: Deploy to GitHub Pages
 on:
   push:
     branches: [ test-deploy ]  # Активируется при push в main ветку
-    
+
 permissions:
   contents: write
   pages: write
@@ -15,25 +15,28 @@ jobs:
     environment: production
     
     steps:
-    # Шаг 1: Получение кода
+
     - name: Checkout repository
       uses: actions/checkout@v4
       
-    # Шаг 2: Установка .NET 8
     - name: Setup .NET
       uses: actions/setup-dotnet@v4
       with:
         dotnet-version: '9.0.x'
         
-    # Шаг 3: Восстановление зависимостей
     - name: Restore dependencies
       run: dotnet restore
       
-    # Шаг 4: Сборка проекта
     - name: Publish project
       run: dotnet publish -c Release -o published --nologo
+
+
+    - name: Add 404 page
+      run: cp published/wwwroot/index.html published/wwwroot/404.html
+
+    - name: Add .nojekyll
+      run: touch published/wwwroot/.nojekyl
       
-    # Шаг 5: Деплой на GitHub Pages
     - name: Deploy to GitHub Pages
       uses: peaceiris/actions-gh-pages@v4.0.0
       with:
