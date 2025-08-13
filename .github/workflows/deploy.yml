@@ -1,0 +1,40 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [ test-deploy ]  # Активируется при push в main ветку
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    environment: production
+    
+    steps:
+    # Шаг 1: Получение кода
+    - name: Checkout repository
+      uses: actions/checkout@v4
+      
+    # Шаг 2: Установка .NET 8
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: '9.0.x'
+        
+    # Шаг 3: Восстановление зависимостей
+    - name: Restore dependencies
+      run: dotnet restore
+      
+    # Шаг 4: Сборка проекта
+    - name: Publish project
+      run: dotnet publish -c Release -o published --nologo
+      
+    # Шаг 5: Деплой на GitHub Pages
+    - name: Deploy to GitHub Pages
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: published/wwwroot
+        force_orphan: true 
+        keep_files: false   
+        user_name: 'GitHub Actions'
+        user_email: 'actions@github.com'
