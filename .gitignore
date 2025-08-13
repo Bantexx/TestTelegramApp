@@ -5,6 +5,7 @@ Thumbs.db:encryptable
 ehthumbs.db
 ehthumbs_vista.db
 
+
 # Dump file
 *.stackdump
 
@@ -107,6 +108,7 @@ captures/
 
 # IntelliJ
 *.iml
+/.idea/
 .idea/workspace.xml
 .idea/tasks.xml
 .idea/gradle.xml
