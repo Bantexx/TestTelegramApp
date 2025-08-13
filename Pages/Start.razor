@@ -1,0 +1,48 @@
+﻿@page "/start"
+@inject TelegramService TelegramService
+@inject HttpClient Http
+@implements IDisposable
+
+<div class="game-container">
+    <h1>💰 Test clicker 💰</h1>
+    
+    @if (showIncomeNotification)
+    {
+        <div class="income-notification">
+            +@CurrencyFormatter.Format(lastIncome) от клиентов
+        </div>
+    }
+    
+    <div class="stats">
+        <p>Баланс: <strong>@CurrencyFormatter.Format(Balance)</strong></p>
+        <p>Технологии: <strong>@TechLevel</strong></p>
+        <p>Клиенты: <strong>@Clients</strong></p>
+        <p>Доход: <strong>@CurrencyFormatter.Format(Clients * TechLevel * 0.1m)</strong>/сек</p>
+    </div>
+
+    <button class="btn-action" @onclick="DevelopFeature">
+        🚀 Разработать фичу (+@CurrencyFormatter.Format(50 * TechLevel))
+    </button>
+
+    <div class="upgrades">
+        <h2>Улучшения</h2>
+        @foreach (var upgrade in Upgrades)
+        {
+            <div class="upgrade-item">
+                <div class="upgrade-header">
+                    <div>
+                        <h3>@upgrade.Name</h3>
+                        <p>Уровень: @upgrade.Level</p>
+                    </div>
+                    <button class="btn-buy" 
+                            disabled="@(Balance < upgrade.Cost)"
+                            @onclick="() => BuyUpgrade(upgrade)">
+                        Купить (@CurrencyFormatter.Format(upgrade.Cost))
+                    </button>
+                </div>
+                <p>Эффект: x@(upgrade.Multiplier) к технологиям</p>
+            </div>
+        }
+    </div>
+</div>
+

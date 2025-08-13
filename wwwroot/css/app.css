@@ -1,0 +1,87 @@
+.game-container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #121a2f;
+    color: white;
+    min-height: 100vh;
+}
+
+.stats {
+    background: #1e293b;
+    padding: 15px;
+    border-radius: 10px;
+    margin: 20px 0;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.btn-action {
+    background: linear-gradient(90deg, #8e44ad, #3498db);
+    border: none;
+    padding: 15px;
+    width: 100%;
+    border-radius: 8px;
+    color: white;
+    font-weight: bold;
+    font-size: 16px;
+    cursor: pointer;
+    margin-bottom: 20px;
+    transition: transform 0.1s;
+}
+
+.btn-action:active {
+    transform: scale(0.98);
+}
+
+.upgrades {
+    display: grid;
+    gap: 15px;
+}
+
+.upgrade-item {
+    background: #2c3e50;
+    padding: 15px;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+}
+
+.upgrade-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.btn-buy {
+    background: #27ae60;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 5px;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.btn-buy:disabled {
+    background: #7f8c8d;
+    cursor: not-allowed;
+}
+
+.income-notification {
+    background: rgba(46, 204, 113, 0.9);
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    margin: 10px 0 20px 0;
+    text-align: center;
+    animation: fadeInOut 2s ease-in-out;
+}
+
+@keyframes fadeInOut {
+    0% { opacity: 0; transform: translateY(-10px); }
+    10% { opacity: 1; transform: translateY(0); }
+    90% { opacity: 1; transform: translateY(0); }
+    100% { opacity: 0; transform: translateY(-10px); }
+}
