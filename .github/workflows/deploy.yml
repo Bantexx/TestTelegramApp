@@ -30,7 +30,7 @@ jobs:
       
     # Шаг 5: Деплой на GitHub Pages
     - name: Deploy to GitHub Pages
-      uses: peaceiris/actions-gh-pages@v3
+      uses: peaceiris/actions-test-deploy@v3
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
         publish_dir: published/wwwroot
